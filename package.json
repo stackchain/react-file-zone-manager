@@ -1,7 +1,7 @@
 {
   "name": "react-file-zone-manager",
   "description": "Simple drop zone for file manager with React.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "module": "dist/react-file-zone-manager.esm.js",
   "typings": "dist/react-file-zone-manager.d.ts",
