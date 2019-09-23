@@ -29,7 +29,7 @@ import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import styled, { ThemeProvider } from 'styled-components'
-import FileZoneManager from '../.'
+import FileZoneManager from 'react-file-zone-manager'
 
 const Container = styled.div`
   .centered {
