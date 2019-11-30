@@ -217,24 +217,20 @@ const FileManager: React.FC<FileManagerProps> = ({
         percent: 0,
         status: Status.AwaitingLoad
       }))
-      try {
-        // prepare the events that will be captured
-        const reader = new FileReader()
-        reader.onabort = error => reject({ file, error })
-        reader.onerror = error => reject({ file, error })
-        reader.onloadend = evt => resolve({ file, evt })
-        reader.onprogress = (e: ProgressEvent<FileReader>) => {
-          dispatch(saveFile({
-            name: file.name,
-            percent: e.loaded / e.total * 100,
-            status: Status.AwaitingLoad
-          }))
-        }
-        // read the file content
-        reader.readAsBinaryString(file)
-      } catch (error) {
-        reject({ file, error })
+      // prepare the events that will be captured
+      const reader = new FileReader()
+      reader.onabort = error => reject({ file, error })
+      reader.onerror = error => reject({ file, error })
+      reader.onloadend = evt => resolve({ file, evt })
+      reader.onprogress = (e: ProgressEvent<FileReader>) => {
+        dispatch(saveFile({
+          name: file.name,
+          percent: e.loaded / e.total * 100,
+          status: Status.AwaitingLoad
+        }))
       }
+      // read the file content
+      reader.readAsBinaryString(file)
     })))
     // Process all files
     Promise.all(stackLoadingFiles)
